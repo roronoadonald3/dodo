@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>AJAX Simple</title>
+</head>
+<body>
+  <h1>Test AJAX</h1>
+  <button onclick="envoyerRequete()">Clique ici</buttQon>
+  <div id="resultat"></div>
+
+  <script>
+    function envoyerRequete() {
+      let xhr = new XMLHttpRequest();              // 1. Créer la requête
+      xhr.open("GET", "exo1.php", true);        // 2. Préparer l’envoi
+
+      xhr.onload = function () {                   // 3. Quand la réponse arrive
+        if (xhr.status === 200) {
+          document.getElementById("resultat").innerHTML = xhr.responseText;
+        }
+      };
+
+      xhr.send();                                  // 4. Envoyer la requête
+    }
+  </script>
+</body>
+</html>
