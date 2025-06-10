@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <input type="text" class="nom" />
+      <input type="text" class="prenom" />
+      <button onclick="envoyer()">envoyer</button>
+      <p style="font-weight: bolder; font-style: italic"><em></em></p>
+    </div>
+    <script>
+    
+      function envoyer() {
+          const nom = document.querySelector(".nom").value;
+      const prenom = document.querySelector(".prenom").value;
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "exo3.php", true);
+        xhr.setRequestHeader(
+          "content-type",
+          "application/x-www-form-urlencoded"
+        );
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            document.querySelector("p").innerText = xhr.responseText;
+          }
+        };
+        xhr.send("nom="+encodeURIComponent(nom)+"&prenom="+encodeURIComponent(prenom))
+    }
+    </script>
+    
+  </body>
+</html>
